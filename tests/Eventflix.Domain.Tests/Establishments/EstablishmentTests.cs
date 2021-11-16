@@ -6,8 +6,8 @@ namespace Eventflix.Domain.Tests.Establishments
 {
     public class EstablishmentTests
     {
-        [Fact(DisplayName = "Deve retornar o status 'Aguardando Análise' quando criado corretamente")]
-        public void Should()
+        [Fact]
+        public void ShouldReturnAwaitingAnalyseWhenCreatedCorrectly()
         {
             // arrange
 
