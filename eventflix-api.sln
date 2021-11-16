@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{25E0509B-A7A1-40BB-B5EF-519C77C441FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventflix.Api", "src\Eventflix.Api\Eventflix.Api.csproj", "{0CEF8EAB-F5AF-4A8D-8403-8947D04B636E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventflix.Domain", "src\Eventflix.Domain\Eventflix.Domain.csproj", "{2B553FDF-1390-4EEC-ABB4-E05F167B9688}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventflix.Infra", "src\Eventflix.Infra\Eventflix.Infra.csproj", "{1DD45771-DB74-43BD-8FBA-29069E09C9A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EE0FEC05-1082-4241-8618-6C90ACBA82FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eventflix.Domain.Tests", "tests\Eventflix.Domain.Tests\Eventflix.Domain.Tests.csproj", "{08B4CFA4-2E9A-479E-9D9A-CF1D39861C4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CEF8EAB-F5AF-4A8D-8403-8947D04B636E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CEF8EAB-F5AF-4A8D-8403-8947D04B636E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CEF8EAB-F5AF-4A8D-8403-8947D04B636E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CEF8EAB-F5AF-4A8D-8403-8947D04B636E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B553FDF-1390-4EEC-ABB4-E05F167B9688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B553FDF-1390-4EEC-ABB4-E05F167B9688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B553FDF-1390-4EEC-ABB4-E05F167B9688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B553FDF-1390-4EEC-ABB4-E05F167B9688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DD45771-DB74-43BD-8FBA-29069E09C9A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DD45771-DB74-43BD-8FBA-29069E09C9A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DD45771-DB74-43BD-8FBA-29069E09C9A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DD45771-DB74-43BD-8FBA-29069E09C9A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08B4CFA4-2E9A-479E-9D9A-CF1D39861C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08B4CFA4-2E9A-479E-9D9A-CF1D39861C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08B4CFA4-2E9A-479E-9D9A-CF1D39861C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08B4CFA4-2E9A-479E-9D9A-CF1D39861C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0CEF8EAB-F5AF-4A8D-8403-8947D04B636E} = {25E0509B-A7A1-40BB-B5EF-519C77C441FC}
+		{2B553FDF-1390-4EEC-ABB4-E05F167B9688} = {25E0509B-A7A1-40BB-B5EF-519C77C441FC}
+		{1DD45771-DB74-43BD-8FBA-29069E09C9A2} = {25E0509B-A7A1-40BB-B5EF-519C77C441FC}
+		{08B4CFA4-2E9A-479E-9D9A-CF1D39861C4B} = {EE0FEC05-1082-4241-8618-6C90ACBA82FF}
+	EndGlobalSection
+EndGlobal
