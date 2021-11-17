@@ -1,4 +1,4 @@
-# EVENTFLIX API
+# Eventflix API
 
 Responsible API for provisioning the endpoints of the main Eventflix application.
 Project of registration, management and consultation of events of various types of
