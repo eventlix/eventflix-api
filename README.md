@@ -40,7 +40,7 @@ dotnet build
 
 ### Running Application
 
-You can roll the application locally with the **.NET** or with **Docker**
+You can run the application locally with the **.NET** or with **Docker**
 
 #### Running with .NET
 
