@@ -19,6 +19,7 @@ Requirements for the software and other tools to build, test and push
 - [Visual Studio Code](https://code.visualstudio.com) - Sugestion of code editor
 - [Visual Studio](https://visualstudio.microsoft.com) - Sugestion of specialized IDE for .NET
 - [Newman](https://www.npmjs.com/package/newman) - For running integration tests
+- [ReportGenerator](https://danielpalme.github.io/ReportGenerator) - For generate code coverage report
 
 ### Installing
 
@@ -53,7 +54,17 @@ You can check if application is running accessing via browser the url: `https://
 
 #### Running with Docker
 
-TODO: Complete running with Docker readme
+To run the application via docker use the commands below.
+
+```bash
+# Build application docker image
+docker build -t eventflix-api .
+
+# Run the application image:
+docker run --rm -it -p 8000:80 eventflix-api
+```
+
+You can check if application is running accessing via browser the url: `http://localhost:8000`
 
 ## Running Tests
 
@@ -70,13 +81,16 @@ dotnet test tests/Eventflix.Domain.Tests
 You can run the unit tests and generate coverage report too
 
 ```bash
+# Installing reportgenerator
+dotnet tool install --global dotnet-reportgenerator-globaltool
+
 # Runing Unit Tests with code coverage
 dotnet test tests/Eventflix.Domain.Tests --verbosity minimal --logger:"html;LogFileName=tests-results.html" --collect:"XPlat Code Coverage"
 
 # Generating reports
 cd tests/Eventflix.Domain.Tests
 cd $(ls -d */|head -n 1)
-reportgenerator "-reports:coverage.xml" "-targetdir:coveragereport" -reporttypes:Html
+reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:coveragereport" -reporttypes:Html
 ```
 
 ### Running Integration Tests
