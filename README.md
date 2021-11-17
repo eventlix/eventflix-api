@@ -44,17 +44,11 @@ You can run the application locally with the **.NET** or with **Docker**
 
 #### Running with .NET
 
-You can run application with the command:
-
 ```bash
 dotnet run --project src/Eventflix.Api
 ```
 
-You can check if application is running accessing via browser the url: `https://localhost:7193` or `http://localhost:5193`
-
 #### Running with Docker
-
-To run the application via docker use the commands below.
 
 ```bash
 # Build application docker image
@@ -64,15 +58,11 @@ docker build -t eventflix-api .
 docker run --rm -it -p 8000:80 eventflix-api
 ```
 
-You can check if application is running accessing via browser the url: `http://localhost:8000`
-
 ## Running Tests
 
 This project have three different types of test: **Unit Test**, **Integration Tests** and **Load Tests**.
 
 ### Running Unit Tests
-
-For run unit test, simply execute command
 
 ```bash
 dotnet test tests/Eventflix.Domain.Tests
@@ -88,14 +78,11 @@ dotnet tool install --global dotnet-reportgenerator-globaltool
 dotnet test tests/Eventflix.Domain.Tests --verbosity minimal --logger:"html;LogFileName=tests-results.html" --collect:"XPlat Code Coverage"
 
 # Generating reports
-cd tests/Eventflix.Domain.Tests
-cd $(ls -d */|head -n 1)
+cd {REPORT_RESULTS_FOLDER}
 reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:coveragereport" -reporttypes:Html
 ```
 
 ### Running Integration Tests
-
-TODO: Complete Running Integration Tests Readme
 
 ```bash
 newman run tests/Eventflix.Integration.Tests/eventflix-api.postman_collection.json -e tests/Eventflix.Integration.Tests/environments/local.postman_environment.json --insecure
