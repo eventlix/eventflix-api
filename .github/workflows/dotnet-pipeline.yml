@@ -1,0 +1,75 @@
+name: .NET
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  TEST_PROJECT_PATH: ./tests/Eventflix.Tests
+  IMAGE_NAME: tfsantosbr/eventflix-api
+  INTEGRATION_TESTS_PATH: ./tests/Eventflix.Integration.Tests
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.100
+
+      - name: Execute Unit Tests
+        run: dotnet test ${{ env.TEST_PROJECT_PATH }} --verbosity minimal --logger:"html;LogFileName=tests-results.html" --collect:"XPlat Code Coverage"
+
+      - name: Generate Test Coverage Report
+        if: success()
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          cd ${{ env.TEST_PROJECT_PATH }}/TestResults
+          cd $(ls -d */|head -n 1)
+          reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:coveragereport" -reporttypes:Html
+
+      - name: Upload Test Coverage Report Artifact
+        uses: actions/upload-artifact@v2.2.2
+        env:
+          TESTS_REPORT_PATH: ${{ env.TEST_PROJECT_PATH }}/TestResults/
+        if: success()
+        with:
+          name: tests-results
+          path: ${{ env.TESTS_REPORT_PATH }}
+          retention-days: 30
+
+      - name: Upload como Artifact do Report de Testes com Falhas
+        uses: actions/upload-artifact@v2.2.2
+        if: failure()
+        env:
+          TESTS_ERRORS_REPORT_PATH: ${{ env.TEST_PROJECT_PATH }}/TestResults/tests-results.html
+        with:
+          name: tests-errors-result
+          path: ${{ env.TESTS_ERRORS_REPORT_PATH }}
+          retention-days: 30
+
+  build:
+    needs: [tests]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build Docker Image
+        run: |
+          docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:latest
+
+      - name: Run Container For Integration Tests
+        run: |
+          docker run -p 5000:80 -d ${{ env.IMAGE_NAME }}:latest
+          docker container ls
+
+      - name: Run Integration Tests
+        run: |
+          newman run ${{ env.INTEGRATION_TESTS_PATH }}/integration-tests.json -e ${{ env.INTEGRATION_TESTS_PATH }}/environments/docker.environment.json
