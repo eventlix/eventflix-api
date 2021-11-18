@@ -7,7 +7,8 @@ on:
     branches: [main]
 
 env:
-  TEST_PROJECT_PATH: ./tests/Eventflix.Tests
+  NOME_WEBAPP: eventflix-api
+  TEST_PROJECT_PATH: ./tests/Eventflix.Domain.Tests
   IMAGE_NAME: tfsantosbr/eventflix-api
   INTEGRATION_TESTS_PATH: ./tests/Eventflix.Integration.Tests
 
