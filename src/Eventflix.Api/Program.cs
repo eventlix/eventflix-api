@@ -1,8 +1,11 @@
+using Elastic.Apm.NetCoreAll;
 using Eventflix.Api.Extensions.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.AddLogs(builder.Configuration);
+builder.Host
+    .AddLogs(builder.Configuration)
+    .UseAllElasticApm();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
