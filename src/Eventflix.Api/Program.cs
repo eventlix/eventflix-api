@@ -1,4 +1,8 @@
+using Eventflix.Api.Extensions.Configurations;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.AddLogs(builder.Configuration);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

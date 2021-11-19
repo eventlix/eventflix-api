@@ -9,12 +9,20 @@ namespace Eventflix.Api.Controllers;
 [Route("establishments")]
 public class EstablishmentsController : ControllerBase
 {
-    private static readonly List<Establishment> _establishments = new ();
+    private static readonly List<Establishment> _establishments = new();
+    private readonly ILogger _logger;
+
+    public EstablishmentsController(ILogger<EstablishmentsController> logger)
+    {
+        _logger = logger;
+    }
 
     [HttpGet]
     public IActionResult Get()
     {
-        var items = _establishments.Select(e=>new EstablishmentItem
+        _logger.LogInformation("Call establishment list endpoint");
+
+        var items = _establishments.Select(e => new EstablishmentItem
         {
             Id = e.Id,
             Name = e.Name,
@@ -27,6 +35,8 @@ public class EstablishmentsController : ControllerBase
     [HttpPost]
     public IActionResult Post([FromBody] CreateEstablishment request)
     {
+        _logger.LogInformation("Call create establishment endpoint");
+
         var establishment = new Establishment(
             name: request.Name
         );
