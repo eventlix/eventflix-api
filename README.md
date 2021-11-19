@@ -58,6 +58,14 @@ docker build -t eventflix-api .
 docker run --rm -it -p 8000:80 eventflix-api
 ```
 
+#### Running with Docker Compose
+
+```bash
+docker-compose up -d
+```
+
+Docker compose will run application and infrastructure dependencies
+
 ## Running Tests
 
 This project have three different types of test: **Unit Test**, **Integration Tests** and **Load Tests**.

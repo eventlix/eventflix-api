@@ -1,9 +1,8 @@
-version: '3.1'
+version: "3.1"
 
 services:
-
   postgres:
-    container_name: eventflix-api-db
+    container_name: eventflix-api-postgres
     image: postgres
     restart: always
     environment:
@@ -11,3 +10,41 @@ services:
       POSTGRES_PASSWORD: eventflix
     ports:
       - 5402:5432
+    networks:
+      - eventflix-network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
+    container_name: eventflix-api-elasticsearch
+    environment:
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - eventflix-api-elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - eventflix-network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.15.2
+    container_name: eventflix-api-kibana
+    ports:
+      - 5601:5601
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch:9200"]'
+    networks:
+      - eventflix-network
+
+volumes:
+  eventflix-api-elasticsearch-data:
+    driver: local
+
+networks:
+  eventflix-network:
+    driver: bridge
