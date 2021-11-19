@@ -83,7 +83,7 @@ jobs:
           newman run ${{ env.INTEGRATION_TESTS_PATH }}/integration-tests.json -e ${{ env.INTEGRATION_TESTS_PATH }}/environments/docker.environment.json
 
   publish:
-    needs: [build]
+    needs: [integration-tests]
     runs-on: ubuntu-latest
 
     steps:
